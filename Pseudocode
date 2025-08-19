@@ -1,0 +1,68 @@
+# =============================
+# SolMedia Protocol Pseudo Code
+# =============================
+
+# Actors: Creator, Listener, Validator
+# Token: $SMD (SolMedia Token)
+
+# -----------------------------
+# 1. Creator publishes content
+# -----------------------------
+def publish_content(creator_wallet, content_hash, price):
+    # Store content metadata on-chain
+    content_id = store_onchain({
+        "creator": creator_wallet,
+        "hash": content_hash,   # IPFS/Arweave link
+        "price": price,         # 0 if free
+        "timestamp": now()
+    })
+    return content_id
+
+# -----------------------------
+# 2. Listener unlocks content
+# -----------------------------
+def unlock_content(listener_wallet, content_id):
+    content = get_content(content_id)
+    if content.price > 0:
+        # Create escrow tx
+        transfer_to_escrow(listener_wallet, content.creator, content.price, content_id)
+
+    # Grant access (return decryption key / playback rights)
+    key = fetch_decryption_key(content.hash, listener_wallet)
+    return key
+
+# -----------------------------
+# 3. Escrow Settlement
+# -----------------------------
+def settle_payment(content_id):
+    # After successful playback validation
+    release_from_escrow(content.creator, content.price)
+    mark_content_paid(content_id)
+
+# -----------------------------
+# 4. Encrypted Messaging
+# -----------------------------
+def send_private_message(sender_wallet, receiver_wallet, message):
+    encrypted_msg = encrypt_with_receiver_pubkey(message, receiver_wallet.pubkey)
+    store_onchain({
+        "from": sender_wallet,
+        "to": receiver_wallet,
+        "msg": encrypted_msg,
+        "timestamp": now()
+    })
+
+def read_private_message(receiver_wallet, msg_id):
+    msg = fetch_onchain(msg_id)
+    return decrypt_with_privkey(msg["msg"], receiver_wallet.privkey)
+
+# -----------------------------
+# 5. Governance Hooks
+# -----------------------------
+def propose_upgrade(proposer_wallet, proposal_data):
+    create_governance_vote(proposer_wallet, proposal_data)
+
+def vote(proposal_id, voter_wallet, vote_choice):
+    record_vote(proposal_id, voter_wallet, vote_choice)
+
+Experimental rough draft. 
+CC BY 4.0 
