@@ -1,6 +1,6 @@
-# Solmedia-Protocol-decentralized-censorship-resistant-RSS-media-protocol-
+# Solanamedia-Protocol-decentralized-censorship-resistant-RSS-media-protocol-
 
-# SolMedia Protocol
+# Solana media Protocol
 
 Decentralized media distribution & streaming on Solana.  
 Publish, stream, and monetize podcasts, livestreams, and premium media without gatekeepers.
