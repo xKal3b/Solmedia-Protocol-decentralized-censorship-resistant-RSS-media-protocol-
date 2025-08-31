@@ -16,7 +16,7 @@ Publish, stream, and monetize podcasts, livestreams, and premium media without g
 ## Contact
 Author: **Kaleb Barnhart**  
 X: [@xkal3b](https://x.com/xkal3b)  
-Email: **kbrnhrt@gmail.com**
+💬 Telegram: [@kb441](https://t.me/kb441)
 
 ## License
 Open-source (CC BY 4.0)
